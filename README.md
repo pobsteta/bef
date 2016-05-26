@@ -57,46 +57,36 @@ Exécuter
 
 et allez prendre une tasse de café pour patienter...
 
-The first setup will take some time for
+La première instanciation prend quelques temps pour
 
-* downloading the images
-* importing the GNU Health Demo database
+* charger les images
+* importer la base de données de démo BEF
 
-Subsequent calls to `docker-compose up` will run much faster.
-Stop the servers with Ctrl+C.
-
-As soon as the servers have started up you can connect with the Tryton client using the credentials
-as described in the [GNU Health documentation](http://en.wikibooks.org/wiki/GNU_Health/The_Demo_database#Online_Demo_Database)
-with the only difference that you put in your own machine as the server (localhost, if you are
-running the client on the same machine)
-
-    Server: <your_machine>:8000
-    Database: health30
-    User name: admin
-    Password: gnusolidario
-
-Note: The version of the Tryton client must match the version of the server (3.8.x).
-A suitable client can be installed from distribution packages of your distribution or from the
-[Tryton download site](http://www.tryton.org/download.html) for OS X or Windows binaries.
-
-For Debian systems please refer to [packages from debian.tryton.org](http://tryton.alioth.debian.org/mirror.html#distributions)
-for the procedures to install the correct version.
-
-### Building and running from source
-
-Todo
-
-## Authors and Credits
-
-This setup was made by [MBSolutions](http://www.m9s.biz) in the hope, that it may be useful
-for the GNU Health users. Thanks to the [GNU Health project](http://health.gnu.org/)
-for providing this free Health and Hospital Information System.
-
-Parts of this setup were adopted from
-
-* [postgres](https://github.com/docker-library/postgres/) by [Docker Official Image Packaging for Postgres](https://github.com/docker-library/postgres/).
+Les instanciation suivantes par la commande `docker-compose up` iront beaucoup plus vite.
+Arrêter le serveur avec la commande Ctrl+C.
 
 
-## Support
+Lister les conteneurs :
 
-For any questions about this image and docker setup you may contact us at [support](mailto:info@m9s.biz).
+  docker ps
+  
+Se connecter sur le conteneur sime :
+
+  docker exec -ti <id_conteneur_bef> bash
+  
+Ou directement avec le nom du conteneur conteu dans docker-compose.yml :
+
+  docker exec -ti sime bash
+  
+Se rendre dans le répertoire /opt/tryton/bin et lancer le serveur par la commande :
+
+  ./trytond -d tryton
+  
+Lancer un client tryton avec les attributs :
+
+  host: localhost:8000
+  base de données: tryton
+  identifiant: admin
+  mot de passe: admin
+  
+Voilà vous pouvez utiliser SIME BEF !
