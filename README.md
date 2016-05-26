@@ -47,15 +47,15 @@ Créer un répertoire de travail
     mkdir ~/bef
     cd bef
 
-Fetch the definition file
+Télécharger le ficher docker-compose.yml
 
-    curl -o ./docker-compose.yml https://raw.githubusercontent.com/mbehrle/docker-gnuhealth-demo/master/docker-compose.yml
+    curl -o ./docker-compose.yml https://raw.githubusercontent.com/pobsteta/bef/master/docker-compose.yml
 
-Run
+Exécuter
 
     docker-compose up
 
-and get yourself a cup of coffee...
+et allez prendre une tasse de café pour patienter...
 
 The first setup will take some time for
 
