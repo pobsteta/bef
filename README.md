@@ -1,6 +1,6 @@
 # Docker Setup for SIME BEF Demoserver
 
-Ce dépôr Docker est un moyen rapide et efficace d'installer
+Ce dépôt Docker est un moyen rapide et efficace d'installer
 un serveur de démonstration de [SIME BEF] (http://www.bioecoforests.com/index.html)
 (Système Intégré de Management Environnemental Bio Eco Forests).
 
@@ -62,7 +62,7 @@ La première instanciation prend quelques temps pour
 * charger les images
 * importer la base de données de démo BEF
 
-Les instanciation suivantes par la commande `docker-compose up` iront beaucoup plus vite.
+Les instanciations suivantes par la commande `docker-compose up` iront beaucoup plus vite.
 Arrêter le serveur avec la commande Ctrl+C.
 
 
