@@ -1,7 +1,7 @@
 version: "2"
 
 volumes:
-    datavol:
+    pgdatavol:
         driver: local
         
 services:
@@ -9,15 +9,13 @@ services:
         image: pobsteta/docker-base
         container_name: pgdata        
         volumes:
-          - datavol:/var/lib/postgresql/data
-          - datavol:/var/lib/tryton
-          - datavol:/var/log/tryton 
+          - pgdatavol:/var/lib/postgresql/data
         
     db:        
         image: pobsteta/bef-db
         container_name: db
         volumes_from:
-        - pgdata        
+        - pgdata
         ports:        
         - "35432:5432"
         environment:
@@ -31,7 +29,7 @@ services:
         depends_on:
         - db        
         volumes_from:
-        - pgdata              
+        - pgdata             
         ports:
         - "8000:8000"
         - "8001:8001"        
