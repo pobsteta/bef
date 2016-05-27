@@ -11,9 +11,9 @@ docker rmi -f $(docker images -q)
 # Supprime tous les volumes
 docker volume rm $(docker volume ls -qf dangling=true)
 # Construit l'image
-docker build -t pobsteta/docker-sime .
+docker build -t pobsteta/bef-sime .
 # Lance le container créé détaché (argument -d)
-#docker run -p 35432:5432 -p 38000:8000 pobsteta/docker-sime
+#docker run -p 35432:5432 -p 38000:8000 pobsteta/bef-sime
 # Sauvegarde la base postgresql du conteneur pgdata contenu dans le volume pgdatavolume dans un conteneur docker-base
 #docker run --rm --volumes-from pgdata -v $(pwd):/backup pobsteta/docker-base tar cvf /backup/backup.tar /var/lib/postgresql/data /var/lib/tryton
 # Lance un nouveau conteneur nommé pgdata

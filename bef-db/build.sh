@@ -9,6 +9,6 @@ docker rm $(docker ps -a -q)
 # Force la suppression des images de base
 docker rmi -f $(docker images -q)
 # Construit l'image
-docker build -t pobsteta/docker-bef .
+docker build -t pobsteta/bef-db .
 # Lance le container créé détaché (argument -d)
-#docker run --name pggis -p 35432:5432 -d pobsteta/docker-bef
+#docker run --name db -p 35432:5432 -d pobsteta/bef-db

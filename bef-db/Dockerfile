@@ -76,10 +76,9 @@ RUN chmod 700 /docker-entrypoint-initdb.d/init-postgis-db.sh
 
 # === On ajoute ici le fichier de sauvegarde de la bdd BEF de démo ===
 
-RUN mkdir -p /data/restore
-RUN cd /data/restore
-# On le télécharge sur le serveur ftp
-RUN wget ftp://139.59.135.185/bef/tryton.sql.gz
+RUN mkdir -p /data/restore \
+	&& cd /data/restore \
+	&& wget -c ftp://139.59.135.185/bef/tryton.sql.gz
 
 # ====================================================================
 
