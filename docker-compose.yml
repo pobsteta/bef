@@ -1,40 +1,40 @@
 version: "2"
 
 volumes:
-    pgdatavol:
+    datavol:
         driver: local
         
 services:
     pgdata:
         image: pobsteta/docker-base
-        container_name: pgdata        
+        container_name: pgdata
         volumes:
-          - pgdatavol:/var/lib/postgresql/data
+          - datavol:/var/lib/postgresql/data
         
-    db:        
+    db:
         image: pobsteta/bef-db
         container_name: db
         volumes_from:
         - pgdata
-        ports:        
+        ports:
         - "35432:5432"
         environment:
         - POSTGRES_USER=docker
         - POSTGRES_PASSWORD=docker
+        #- REP=
         restart: always
 
-    sime:        
+    sime:
         image: pobsteta/bef-sime
         container_name: sime
         depends_on:
-        - db        
+        - db
         volumes_from:
-        - pgdata             
+        - pgdata
         ports:
         - "8000:8000"
-        - "8001:8001"        
+        - "8001:8001"
         links:
         - db
         restart: always
-        
 

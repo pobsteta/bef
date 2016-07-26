@@ -30,8 +30,7 @@ RUN set -x \
 	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
 	&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
 	&& chmod +x /usr/local/bin/gosu \
-	&& gosu nobody true \
-	&& apt-get purge -y --auto-remove ca-certificates
+	&& gosu nobody true
 
 # On met la locale à "fr_FR.UTF-8" pour que Postgres soit en français par défaut
 RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
@@ -70,20 +69,16 @@ VOLUME ["/var/lib/postgresql/data"]
 # Crée le répertoire docker-entrypoint-initdb.d
 RUN mkdir /docker-entrypoint-initdb.d
 
+# Copie le script de création des bases de données de sauvegarde tryton
+COPY ./init-tryton-sql.sh /docker-entrypoint-initdb.d/01-init-tryton-sql.sh
+RUN chmod 700 /docker-entrypoint-initdb.d/01-init-tryton-sql.sh
+
 # Copie le script de création des bases de données postgis
-COPY ./init-postgis-db.sh /docker-entrypoint-initdb.d/init-postgis-db.sh
-RUN chmod 700 /docker-entrypoint-initdb.d/init-postgis-db.sh
+COPY ./init-postgis-db.sh /docker-entrypoint-initdb.d/02-init-postgis-db.sh
+RUN chmod 700 /docker-entrypoint-initdb.d/02-init-postgis-db.sh
 
-# === On ajoute ici le fichier de sauvegarde de la bdd BEF de démo ===
-
-RUN mkdir -p /data/restore \
-	&& cd /data/restore \
-	&& wget -c ftp://139.59.135.185/bef/tryton.sql.gz
-
-# ====================================================================
-
-# On supprime wget
-RUN apt-get purge -y --auto-remove wget
+# Création du répertoire de sauvegarde des fichiers SQL
+RUN mkdir -p /data/restore
 
 COPY init-pg.sh /
 RUN chmod 700 /init-pg.sh

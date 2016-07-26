@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Docker SIME (Tryton GIS 2.8)
+=======
+# bef-sime
+>>>>>>> 49c8c86ae80e64616c0760ed068e51042209cca1
 Docker bef-sime contient Tryton GIS 2.8 et la base de données de démonstration BEF.
   
   
