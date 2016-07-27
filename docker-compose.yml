@@ -21,7 +21,7 @@ services:
         environment:
         - POSTGRES_USER=docker
         - POSTGRES_PASSWORD=docker
-        #- REP=
+        - REP=75d30fb6e791e4c2fe9bf011482460fa
         restart: always
 
     sime:
